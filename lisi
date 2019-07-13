@@ -1,4 +1,25 @@
-ni hao  
-ni shi nan dde  `
-afafafdad:``
-afdadafdfd 
+show databases;
+
+查看数据的创建语句：
+Show create database db_name;
+
+数据库删除：
+Drop database db_name;
+
+修改数据库信息
+Alter database db_name [修改指令]  
+指令：数据库属性的修改。Alter database dbname character set 字符集
+
+修改表名 rename table   old    to   new
+Rename table old_tbl_name to new_tbl_name;
+
+修改列定义   alter table tbl_name [add|drop|change|modify]
+
+修改表结构，上面的是子命令，上级是， alter table tbl_name [add|drop|change|modify]
+
+修改表选项
+Alter  table  tbl_name 新的表选项。
+
+Mysql支持的常见字符集：
+通过命令：
+Show character set;
