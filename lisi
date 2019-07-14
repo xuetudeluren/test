@@ -23,3 +23,35 @@ Alter  table  tbl_name 新的表选项。
 Mysql支持的常见字符集：
 通过命令：
 Show character set;
+
+alter table table_name change column 原字段名 新字段名 新字段定义！
+
+insert into 表名 (字段列表) values (与字段相对的值列表)
+
+select 字段列表 from 表名 [where 条件表达式]
+
+delete from 表名 where 条件;
+
+update 表名 set 字段=新值, 字段n=新值n where 条件
+
+删除主键：
+alter table表名 drop primary key;
+
+添加主键
+alter table 表名 add primary key(‘字段列表’);
+
+删除唯一
+alter table 表名 drop index index_name；
+
+增加唯一
+alter table 表名 add unique key 索引名字 (字段列表)
+
+alter table 表名 add constraint 约束的名字 foreign key 外键索引名字 (外键字段名) references 关联表名 (关联字段) [操作] 
+
+删除外键
+alter table table_name drop foreign_key外键名字！
+
+
+inner join  内连接  left join 左外连接  right join  右外连接
+
+from where  group by  having order by  limit
