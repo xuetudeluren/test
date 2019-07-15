@@ -1,0 +1,31 @@
+CTRL+N 查找类
+
+CTRL+SHIFT+N 全局搜索文件 ,优先文件名匹配的文件
+
+CTRL+SHIFT+ALT+N 查找php类名/变量名 ,js方法名/变量名, css 选择器
+
+CIRL+B 找变量的来源，跳到变量申明处 (CTRL+ 鼠标单击 也可以
+
+CTRL+ALT+B 找到继承该接口或者父级 的所有子类, 统计所有子类个数
+
+CTRL+G 定位行，跳转行
+
+CTRL+F 在当前窗口查找文本
+
+CTRL+R 当前窗口替换文本
+
+CTRL+E 最近打开的文件
+
+CTRL+J 自动代码提示，自动补全
+
+CTRL+P 方法参数提示，显示默认参数
+
+CTRL+C 复制
+
+CTRL+V 粘贴
+
+CTRL+X 剪切,删除行
+
+Ctrl + Y 删除行插入符号
+
+CTRL+D 复制行 , 快速分布li标签等

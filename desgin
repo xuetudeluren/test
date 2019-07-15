@@ -1,0 +1,40 @@
+单例模式：
+
+单例模式解决的是如何在整个项目中创建唯一对象实例的问题，
+
+1.$_instance必须声明为静态的私有变量
+3.getInstance()方法必须设置为公有的,必须调用此方法 以返回实例的一个引用
+4.::操作符只能访问静态变量和静态函数
+5.new对象都会消耗内存
+6.使用场景:最常用的地方是数据库连接。
+7.使用单例模式生成一个对象后， 该对象可以被其它众多对象所使用。
+8.私有的__clone()方法防止克隆对象
+
+
+
+
+工厂模式：
+工厂模式解决的是如何不通过new建立实例对象的方法。
+
+
+注册模式:
+解决全局共享和交换对象。已经创建好的对象，挂在到某个全局可以使用的数组上，在需要使用的时候，直接从该数组上获取即可。将对象注册到全局的树上。任何地方直接去访问
+
+
+<?php
+
+class Register
+{
+    protected static  $objects;
+    static function set($alias,$object)//将对象注册到全局的树上
+    {
+        self::$objects[$alias]=$object;//将对象放到树上
+    }
+    static function get($name){
+        return self::$objects[$name];//获取某个注册到树上的对象
+    }
+    static function _unset($alias)
+    {
+        unset(self::$objects[$alias]);//移除某个注册到树上的对象。
+    }
+}
