@@ -123,13 +123,13 @@ ltrim()
 rtrim()
 trim()
 str_pad()
-str_repeat()
+str_repeat()  //tr_repeat("-=", 10);
 
 2.字符串大小写转换函数
 strtolower()
 strtoupper()
-ucfirst()
-ucwords()
+ucfirst()  // 字符串首字母大写
+ucwords()  // 每个单词首字母大写
 
 3.与html标签相关联的字符串函数
 nl2br()
@@ -140,35 +140,35 @@ addslashes()
 stripslashes()
 
 4.其他字符串格式化函数
-strrev()
-strlen()
+strrev() // 字符串翻转 
+strlen()  // 字符串的长度
 number_format()
-md5() 
-str_shuffle()
+md5()         // md5加密
+str_shuffle()  // 打乱字符串
 
 5.字符串的分割与拼接
-explode()
-implode()
+explode()  // 字符串 转 数组 
+implode()  // 数组 转字符串
 join()
-str_split();
+str_split();  // 正则分割字符串
 
 6.字符串的截取
-substr()
+substr()  // 字符串截取
 
 7.字符串的查找
-strpos()
-strrpos($str,'w')
+strpos()  // 字符串出现的位置  第一次出现
+strrpos($str,'w')  // 字符串最后一次出现的位置
 
 8.字符串的替换
-str_replace()
+str_replace()  // 字符串替换
 
 9.多字节处理函数
 mb_substr($str,0,7,"utf-8");
 
 10.路径处理函数
-dirname();
-basename();
-pathinfo();
+dirname(); // 目录的部分
+basename(); // 文件的部分
+pathinfo(); // 文件详细信息
 parse_url();
 parse_str();
 
@@ -258,9 +258,9 @@ mt_rand();
 
 日期函数:
 time();
-strtotime();
-date();
-microtime();
+strtotime(); // 时间戳
+date(); // 日期
+microtime(); // 时间戳 微秒数
 
 中华人民共和国时区:(东八区)
 date.timezone = PRC
