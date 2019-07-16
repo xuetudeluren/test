@@ -12,3 +12,177 @@ php 程序出错后过去zend引擎会发生致命的错误并终止程序运行
 性能优化
 
 zval 使用栈内存  
+
+
+类型声明:
+	两类变量可以声明类型：形参、返回值
+	class Person
+	{
+		public function age(int $age)  // 形参类型声明
+		{
+
+			return $age;
+		}
+	}
+
+	class Person
+	{
+		public function age(float $age) : string  // 返回类型声明
+
+		{
+			return 'Age is '.$age;
+		}
+	}
+
+
+命名空间的集体声明:
+	非混合模式的use声明:
+		use Publishers\Packt\{ Book, Ebook, Video, Presentation };
+		use function Publishers\Packt\{ getBook, saveBook };
+		use const Publishers\Packt\{ COUNT, KEY };
+	混合模式的use声明:我们将同一命名空间下的内容合并在一起，使用一次use关键字完成全部声明，
+		use Publishers\Packt\{
+			Book,
+			Ebook,
+			Video,
+			Presentation,
+			function getBook,
+			function saveBook,
+			const COUNT,
+			const KEY
+		};	
+	复合模式的use声明:
+		use Publishers\Packt\{
+			Paper\Book,
+			Electronic\Ebook,
+			Media\Video,
+			Media\Presentation
+		};
+
+匿名类:
+	new class(argument) { definition };
+	$name = new class() {
+		public function __construct()
+		{
+		echo 'Altaf Hussain';
+		}
+	};
+	匿名类在继承方面与命名类相同，一样可以继承父类及父类的方法，以下面代码为例。
+		class Packt
+		{
+			protected $number;
+			public function __construct()
+			{
+				echo 'I am parent constructor';
+			}
+			public function getNumber() : float
+			{
+			
+				return $this->number;
+			}
+		}
+		$number = new class(5) extends packt
+			{
+				public function __construct(float $number)
+				{
+				parent::__construct();
+				$this->number = $number;
+				}
+			};
+		echo $number->getNumber();
+
+	匿名类可以嵌套在一个类中使用
+	class Math
+	{
+		public $first_number = 10;
+		public $second_number = 20;
+		public function add() : float
+		{
+			return $this->first_number + $this->second_number;
+		}
+		public function multiply_sum()
+		{
+			return new class() extends Math
+			{
+			public function multiply(float $third_number) : float
+			{
+			return $this->add() * $third_number;
+			}
+			};
+		}
+	}
+	$math = new Math();
+	echo $math->multiply_sum()->multiply(2);
+Throwable接口： 捕获错误异常
+	我们自己写的PHP类是不能继承throwable接口的，如果希望继承throwable接口，需要
+	继承某个异常类。
+	大多数情况下，error实例会在大部分Fatal错误的情况下被抛出，但是对于一些错误情况，只有error的
+	子实例会被抛出，例如TypeError、DivisionByZeroError、ParseError等。
+
+老式构造函数的摒弃
+
+太空飞船操作符: <=>
+	当符号两边相等时返回0
+	当符号右边大于符号左边时返回-1
+	当符号左边大于符号右边时返回1
+		$int1 = 1;
+		$int2 = 2;
+		$int3 = 1;
+		echo $int1 <=> $int3; //返回0
+		echo '<br>';
+		echo $int1 <=> $int2; //返回-1
+		echo '<br>';
+		echo $int2 <=> $int3; //返回1
+
+null合并运算符: ??
+	$post = $_POST['title'] ?? NULL;
+
+uniform变量语法
+	$first = ['name' => 'second'];
+	$second = 'Howdy';
+	echo $$first['name'];  // php5
+	echo ${$first}   // php 7
+
+	class Packt
+	{
+		public $title = 'PHP 7';
+		public $publisher = 'Packt Publisher';
+		public function getTitle() : string
+		{
+			return $this->title;
+		}
+		public function getPublisher() : string
+		{
+			return $this->publisher;
+		}
+	}
+	$mthods = ['title' => 'getTitle', 'publisher' => 'getPublisher'];
+	$object = new Packt();
+	echo 'Book '.$object->$methods['title']().
+	' is published by '.$object->$methods['publisher']();  // PHP5 可以达到预期
+
+	在PHP 7环境下执行时，
+	会产生Fatal级别错误。错误主要体现在最后一行，PHP 7会首先尝试解析$object->$method，之后才会尝试
+	解析['title']等，这并不符合预期。
+	若想让这段代码在PHP 7中运行起来，需要做以下修改。
+	echo 'Book '.$object->{$methods['title']}().
+	' is published by '.$object->{$methods['publisher']}();
+    
+其他特性改动：
+	常量数组：
+		从PHP 5.6开始，常量数组可以使用const关键字来声明，方法如下。
+			const STORES = ['en', 'fr', 'ar'];
+		目前在PHP 7中，常量数组可以通过define函数来初始化。
+			define('STORES', ['en', 'fr', 'ar']);
+
+	Switch中的多个default默认值:
+		php 7  多个default  会产生Fatal 
+
+	Session_start函数中的选项数组:
+		session_start([
+		'cookie_lifetime' => 3600,
+		'read_and_close' => true
+		])
+	实参部分传递的选项数组将优先于php.ini中的session配置而被使用
+
+	Unserialize函数引入过滤器:
