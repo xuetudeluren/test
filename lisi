@@ -54,4 +54,4 @@ alter table table_name drop foreign_key外键名字！
 
 inner join  内连接  left join 左外连接  right join  右外连接
 
-from where  group by  having order by  limit
+from  where  group by  having order by  limit

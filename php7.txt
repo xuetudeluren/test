@@ -27,7 +27,7 @@ zval 使用栈内存
 
 	class Person
 	{
-		public function age(float $age) : string  // 返回类型声明
+		public function age(float $age) : string  // 返回值类型声明
 
 		{
 			return 'Age is '.$age;
@@ -39,7 +39,7 @@ zval 使用栈内存
 	非混合模式的use声明:
 		use Publishers\Packt\{ Book, Ebook, Video, Presentation };
 		use function Publishers\Packt\{ getBook, saveBook };
-		use const Publishers\Packt\{ COUNT, KEY };
+		use const Publishers\Packt\{ COUNT, KEY }; 
 	混合模式的use声明:我们将同一命名空间下的内容合并在一起，使用一次use关键字完成全部声明，
 		use Publishers\Packt\{
 			Book,
@@ -137,11 +137,11 @@ Throwable接口： 捕获错误异常
 null合并运算符: ??
 	$post = $_POST['title'] ?? NULL;
 
-uniform变量语法
+统一变量语法
 	$first = ['name' => 'second'];
 	$second = 'Howdy';
 	echo $$first['name'];  // php5
-	echo ${$first}   // php 7
+	echo ${$first['name']}   // php 7
 
 	class Packt
 	{
@@ -181,7 +181,7 @@ uniform变量语法
 	Session_start函数中的选项数组:
 		session_start([
 		'cookie_lifetime' => 3600,
-		'read_and_close' => true
+		'read_and_close'  => true
 		])
 	实参部分传递的选项数组将优先于php.ini中的session配置而被使用
 
