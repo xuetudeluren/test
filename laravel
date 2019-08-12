@@ -1,0 +1,18 @@
+lavavel 分页两种方法：
+第一种：只有分页
+$sql -> offset($params['start'])->limit($params['length']);
+通过偏移（offset）和限制（limit）来实现分页 ， 
+offset   表示   当前页数
+limit     表示    每页条数
+但是这种方法我们需要再加一个接口来获取总条数
+
+第二种：返回分页后的数据和总条数
+
+第二种可以在分页后获取到数据的同时，也返回总条数
+语法：paginate(int $perPage, array $columns, string $pageName, int|null $page) 
+int $perPage：每页几条
+array $columns：返回的字段数组。
+string $pageName:分页字段名（无特殊要求我都是命名为page）
+int|null $page：第几页
+
+paginate(3,['rb_order_id'],'page',2);
