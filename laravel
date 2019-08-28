@@ -16,3 +16,7 @@ string $pageName:分页字段名（无特殊要求我都是命名为page）
 int|null $page：第几页
 
 paginate(3,['rb_order_id'],'page',2);
+
+集合中 添加一个字段
+put(key, value);
+
