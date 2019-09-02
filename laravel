@@ -20,3 +20,55 @@ paginate(3,['rb_order_id'],'page',2);
 集合中 添加一个字段
 put(key, value);
 
+laravel在中间件内生成参数并且传递到控制器2种姿势:
+
+姿势1:
+
+使用$request->attributes->add($arr)方法
+
+Demo:
+注册中间件这部分就不说了 主要说用法
+
+class MidParams //中间件
+{
+    public function handle($request, Closure $next)
+    {
+        $mid_params = ['mid_params'=>'this is mid_params'];
+        $request->attributes->add($mid_params);//添加参数
+
+        return $next($request);//进行下一步(即传递给控制器)
+    }
+}
+
+class MidController extends  Controller { //控制器
+    public function testMidFunc(Request $request) {
+        $input_params =  $request->input();//获取参数
+        $mid_params = $request->get('mid_params');//中间件产生的参数
+        return ['my_params'=>$input_params,
+        'mid_params'=>$mid_params];
+        //注意：$request->attributes->add这种方法 input()取不到值        只能用get('xxx')取到值
+    }
+}
+
+姿势2：
+
+使用$request->merge($arr)方法
+
+Demo:
+class MidParams //中间件
+{
+    public function handle($request, Closure $next)
+    {
+        $mid_params = ['mid_params'=>'this is mid_params'];
+        $request->merge($mid_params);//合并参数
+        return $next($request);
+    }
+}
+
+class MidController extends  Controller { //控制器
+    public function testMidFunc(Request $request) {
+        $all_params =  $request->input();//获取参数
+        return ['all_params'=>$all_params];
+    }
+}
+注：merge后$request->input()能获取到所有的参数
